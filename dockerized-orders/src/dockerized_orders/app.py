@@ -4,6 +4,7 @@ Redis) and by sqlite plus fakeredis in the hermetic test suite. The
 Kubernetes probes."""
 
 import asyncio
+import concurrent.futures
 
 from pydantic import BaseModel, Field
 from sqlalchemy import String
@@ -61,9 +62,19 @@ class SchemaSetup(DatabaseConfigurer):
         async def _create():
             async with engine.begin() as conn:
                 await conn.run_sync(AppBase.metadata.create_all)
+            # pooled connections bind to the DDL loop; drop them so
+            # request-time loops get fresh ones
             await engine.dispose()
 
-        asyncio.run(_create())
+        try:
+            asyncio.get_running_loop()
+        except RuntimeError:
+            asyncio.run(_create())
+        else:
+            # under an ASGI server this hook runs inside the event loop:
+            # block a worker thread instead of the loop itself
+            with concurrent.futures.ThreadPoolExecutor(1) as pool:
+                pool.submit(asyncio.run, _create()).result()
 
 
 @component
