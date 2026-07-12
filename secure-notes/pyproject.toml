@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pico-example-secure-notes"
+version = "0.1.0"
+description = "JWT-protected API: embedded auth server plus role-enforced endpoints"
+requires-python = ">=3.11"
+dependencies = [
+    "pico-fastapi>=0.3.1",
+    "pico-server-auth>=0.2.0",
+    "pico-client-auth>=0.5.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio", "pico-testing>=0.2.0", "httpx"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pico_module = "secure_notes"

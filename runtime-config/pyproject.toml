@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pico-example-runtime-config"
+version = "0.1.0"
+description = "Hot config reload through POST /actuator/refresh without restarting"
+requires-python = ">=3.11"
+dependencies = [
+    "pico-fastapi>=0.3.1",
+    "pico-actuator>=0.2.0",
+    "pico-resilience>=0.2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio", "pico-testing>=0.2.0", "httpx"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pico_module = "runtime_config"

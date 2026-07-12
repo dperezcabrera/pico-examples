@@ -1,0 +1,1 @@
+"""API aggregator example package."""

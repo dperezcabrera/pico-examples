@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - order-service
+          - api-aggregator
+          - secure-notes
+          - worker-invoicing
+          - observability-service
+          - runtime-config
+          - dockerized-orders
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e "./${{ matrix.example }}[dev]"
+      - run: pytest ${{ matrix.example }}/tests -q
+
+  compose-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./dockerized-orders/smoke.sh

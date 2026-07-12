@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pico-example-api-aggregator"
+version = "0.1.0"
+description = "Declarative HTTP clients hardened with retry, circuit breaker and cache"
+requires-python = ">=3.11"
+dependencies = [
+    "pico-fastapi>=0.3.1",
+    "pico-httpx>=0.1.0",
+    "pico-resilience>=0.2.0",
+    "pico-caching>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio", "pico-testing>=0.2.0", "httpx"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pico_module = "api_aggregator"

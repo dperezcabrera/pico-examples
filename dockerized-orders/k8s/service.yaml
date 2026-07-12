@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dockerized-orders
+spec:
+  selector:
+    app: dockerized-orders
+  ports:
+    - port: 80
+      targetPort: 8000

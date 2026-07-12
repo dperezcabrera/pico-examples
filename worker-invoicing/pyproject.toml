@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pico-example-worker-invoicing"
+version = "0.1.0"
+description = "Background work: DI-aware Celery tasks plus an in-process scheduler"
+requires-python = ">=3.11"
+dependencies = [
+    "pico-celery>=0.1.0",
+    "pico-scheduling>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio", "pico-testing>=0.2.0"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pico_module = "worker_invoicing"

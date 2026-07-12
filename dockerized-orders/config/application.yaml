@@ -1,0 +1,12 @@
+fastapi:
+  title: dockerized-orders
+  version: 0.1.0
+database:
+  url: sqlite+aiosqlite:////tmp/orders.db
+caching:
+  enabled: true
+redis:
+  url: redis://localhost:6379/0
+actuator:
+  info:
+    app: dockerized-orders

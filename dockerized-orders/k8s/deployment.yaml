@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockerized-orders
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dockerized-orders
+  template:
+    metadata:
+      labels:
+        app: dockerized-orders
+    spec:
+      containers:
+        - name: app
+          image: dockerized-orders:0.1.0
+          ports:
+            - containerPort: 8000
+          env:
+            - name: CONFIG_PATH
+              value: /etc/orders/application.yaml
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: config
+              mountPath: /etc/orders
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: dockerized-orders-config

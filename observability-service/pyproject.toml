@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pico-example-observability-service"
+version = "0.1.0"
+description = "Actuator endpoints, custom health indicators, business metrics and traces"
+requires-python = ">=3.11"
+dependencies = [
+    "pico-fastapi>=0.3.1",
+    "pico-actuator>=0.2.0",
+    "pico-otel>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio", "pico-testing>=0.2.0", "httpx"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pico_module = "observability_service"

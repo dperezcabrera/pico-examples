@@ -1,0 +1,1 @@
+"""Secure notes example package."""

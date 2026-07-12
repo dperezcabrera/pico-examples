@@ -1,0 +1,13 @@
+fastapi:
+  title: dockerized-orders
+  version: 0.1.0
+database:
+  url: postgresql+asyncpg://orders:orders@postgres:5432/orders
+caching:
+  enabled: true
+redis:
+  url: redis://redis:6379/0
+actuator:
+  info:
+    app: dockerized-orders
+    environment: compose
