@@ -11,6 +11,7 @@ dependencies = [
     "pico-fastapi>=0.3.1",
     "pico-actuator>=0.2.0",
     "pico-otel>=0.1.0",
+    "prometheus-client>=0.20",
 ]
 
 [project.optional-dependencies]
