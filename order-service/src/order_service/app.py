@@ -1,7 +1,6 @@
 """Order service: REST CRUD over SQLAlchemy with transactional integrity."""
 
 import asyncio
-import concurrent.futures
 
 from fastapi import HTTPException
 from pydantic import BaseModel, Field
@@ -11,7 +10,6 @@ from pico_fastapi import controller, get, post
 from pico_ioc import component
 from pico_sqlalchemy import (
     AppBase,
-    DatabaseConfigurer,
     Mapped,
     SessionManager,
     get_session,
@@ -59,8 +57,9 @@ class OrderRepository:
 
 
 @component
-class SchemaSetup(DatabaseConfigurer):
-    """Create tables on startup (use Alembic in production: database.migrations_path)."""
+class SchemaSetup:
+    """Create tables on startup (use Alembic in production: database.migrations_path).
+    pico-sqlalchemy >= 0.5.1 runs this hook off the event loop in every context."""
 
     def configure_database(self, engine) -> None:
         async def _create():
@@ -68,15 +67,7 @@ class SchemaSetup(DatabaseConfigurer):
                 await conn.run_sync(AppBase.metadata.create_all)
             await engine.dispose()
 
-        try:
-            asyncio.get_running_loop()
-        except RuntimeError:
-            asyncio.run(_create())
-        else:
-            # under an ASGI server this hook runs inside the event loop:
-            # block a worker thread instead of the loop itself
-            with concurrent.futures.ThreadPoolExecutor(1) as pool:
-                pool.submit(asyncio.run, _create()).result()
+        asyncio.run(_create())
 
 
 @component

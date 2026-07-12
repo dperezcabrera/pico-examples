@@ -9,7 +9,7 @@ description = "Deployable order service: Docker Compose with Postgres and Redis,
 requires-python = ">=3.11"
 dependencies = [
     "pico-fastapi>=0.3.1",
-    "pico-sqlalchemy>=0.5.0",
+    "pico-sqlalchemy>=0.5.1",
     "pico-caching>=0.1.0",
     "pico-data-redis>=0.1.0",
     "pico-actuator>=0.2.0",

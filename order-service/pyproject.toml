@@ -9,7 +9,7 @@ description = "REST CRUD over SQLAlchemy with transactional integrity"
 requires-python = ">=3.11"
 dependencies = [
     "pico-fastapi>=0.3.1",
-    "pico-sqlalchemy>=0.5.0",
+    "pico-sqlalchemy>=0.5.1",
     "aiosqlite>=0.20",
 ]
 
