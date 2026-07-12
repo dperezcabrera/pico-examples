@@ -10,8 +10,7 @@ requires-python = ">=3.11"
 dependencies = [
     "pico-fastapi>=0.3.1",
     "pico-actuator>=0.2.0",
-    "pico-otel>=0.1.0",
-    "prometheus-client>=0.20",
+    "pico-otel[fastapi,prometheus]>=0.1.0",
 ]
 
 [project.optional-dependencies]
