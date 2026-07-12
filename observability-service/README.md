@@ -10,5 +10,10 @@ What to look at:
 - The trace test captures real request spans with an in-memory exporter.
 
 ```bash
-pip install -e ".[dev]" && pytest
+pip install -e ".[dev]" && pytest   # hermetic suite
+./smoke.sh                          # compose: a REAL Prometheus scrapes the app
 ```
+
+## The monitoring contract, end to end
+
+`docker-compose.yml` boots the app plus a real Prometheus configured to scrape `/actuator/metrics` (`prometheus.yml`). `smoke.sh` submits jobs and then asserts `jobs_accepted_total` through Prometheus' query API - validating the full chain: business code increments a counter on the default registry, pico-actuator serves it, Prometheus scrapes it, dashboards can query it.

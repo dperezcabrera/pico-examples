@@ -29,6 +29,12 @@ jobs:
 
   compose-smoke:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        smoke:
+          - dockerized-orders
+          - observability-service
     steps:
       - uses: actions/checkout@v4
-      - run: ./dockerized-orders/smoke.sh
+      - run: ./${{ matrix.smoke }}/smoke.sh

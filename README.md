@@ -8,7 +8,7 @@ Non-trivial, runnable examples for the [pico ecosystem](https://github.com/dpere
 | [api-aggregator](api-aggregator/) | Declarative HTTP clients, retry that absorbs flaky upstreams, circuit breaker failing fast, cached geocoding | fastapi, httpx, resilience, caching |
 | [secure-notes](secure-notes/) | Embedded JWT issuer plus request validation: public reads, authenticated writes, role-gated deletes | fastapi, server-auth, client-auth |
 | [worker-invoicing](worker-invoicing/) | DI-aware Celery tasks enqueued by an in-process scheduler | celery, scheduling |
-| [observability-service](observability-service/) | Health indicators wired to business state, info contributors, prometheus metrics, request traces | fastapi, actuator, otel |
+| [observability-service](observability-service/) | Health indicators wired to business state, prometheus metrics scraped by a real Prometheus (compose), request traces | fastapi, actuator, otel |
 | [runtime-config](runtime-config/) | Hot config reload through POST /actuator/refresh: resilience policies change without restart | fastapi, actuator, resilience |
 | [dockerized-orders](dockerized-orders/) | The same service deployed: Docker Compose with Postgres and Redis, Kubernetes manifests with probes | fastapi, sqlalchemy, caching, data-redis, actuator |
 

@@ -1,0 +1,9 @@
+fastapi:
+  title: observability-service
+  version: 0.1.0
+actuator:
+  info:
+    app: observability-service
+otel:
+  service_name: observability-service
+  traces_exporter: none
