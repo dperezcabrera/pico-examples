@@ -11,6 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
         example:
           - order-service
           - api-aggregator
@@ -20,10 +21,10 @@ jobs:
           - runtime-config
           - dockerized-orders
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
       - run: pip install -e "./${{ matrix.example }}[dev]"
       - run: pytest ${{ matrix.example }}/tests -q
 
@@ -36,5 +37,5 @@ jobs:
           - dockerized-orders
           - observability-service
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: ./${{ matrix.smoke }}/smoke.sh
