@@ -1,0 +1,17 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-alpine
+    healthcheck:
+      test: ["CMD", "su-exec", "rabbitmq", "rabbitmq-diagnostics", "-q", "check_port_connectivity"]
+      interval: 5s
+      timeout: 20s
+      start_period: 15s
+      retries: 20
+
+  app:
+    build: .
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq/
+    depends_on:
+      rabbitmq:
+        condition: service_healthy

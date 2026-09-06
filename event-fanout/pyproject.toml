@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pico-example-event-fanout"
+version = "0.1.0"
+description = "Order events fanned out by RabbitMQ topic routing to independent consumers"
+requires-python = ">=3.11"
+dependencies = [
+    "pico-boot>=0.2.0",
+    "pico-rabbitmq>=0.1.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio", "pico-testing>=0.2.0"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pico_module = "event_fanout"

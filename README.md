@@ -11,6 +11,9 @@ Non-trivial, runnable examples for the [pico ecosystem](https://github.com/dpere
 | [observability-service](observability-service/) | Health indicators wired to business state, prometheus metrics scraped by a real Prometheus (compose), request traces | fastapi, actuator, otel |
 | [runtime-config](runtime-config/) | Hot config reload through POST /actuator/refresh: resilience policies change without restart | fastapi, actuator, resilience |
 | [dockerized-orders](dockerized-orders/) | The same service deployed: Docker Compose with Postgres and Redis, Kubernetes manifests with probes | fastapi, sqlalchemy, caching, data-redis, actuator |
+| [quote-service](quote-service/) | Validation in the service layer, not the transport: `@validate` on component methods, a CLI entry point booted by pico-boot plugin discovery | boot, pydantic |
+| [event-fanout](event-fanout/) | Topic routing over RabbitMQ: one publisher, three queues with different bindings, a poison message rejected without requeue | boot, rabbitmq |
+| [click-stream](click-stream/) | Two consumer groups on one Kafka topic reading independently, a poison record skipped without stalling the partition | boot, kafka |
 
 ## Running an example
 
@@ -34,6 +37,8 @@ cd dockerized-orders
 ```
 
 builds the image from PyPI packages, boots Postgres and Redis, places an order through the real stack and tears everything down.
+
+`event-fanout` and `click-stream` ship the same kind of `smoke.sh`: the hermetic tests fake the broker client, the smoke runs the identical components against a real RabbitMQ or Kafka.
 
 ## Conventions
 

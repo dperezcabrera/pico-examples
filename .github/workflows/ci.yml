@@ -25,6 +25,9 @@ jobs:
           - observability-service
           - runtime-config
           - dockerized-orders
+          - quote-service
+          - event-fanout
+          - click-stream
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -41,6 +44,8 @@ jobs:
         smoke:
           - dockerized-orders
           - observability-service
+          - event-fanout
+          - click-stream
     steps:
       - uses: actions/checkout@v7
       - run: ./${{ matrix.smoke }}/smoke.sh
