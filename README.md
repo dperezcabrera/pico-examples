@@ -16,9 +16,11 @@ Non-trivial, runnable examples for the [pico ecosystem](https://github.com/dpere
 
 ```bash
 cd order-service
-pip install -e ".[dev]"
+pip install -c https://raw.githubusercontent.com/dperezcabrera/pico-bom/main/2026.09.txt -e ".[dev]"
 pytest
 ```
+
+The constraints file is a [pico-bom](https://github.com/dperezcabrera/pico-bom) release train: the set of pico versions validated together. CI and the Docker images install against the same train, so what the examples exercise is exactly that set.
 
 Tests run under [pico-testing](https://github.com/dperezcabrera/pico-testing): the package under test is declared once (`pico_module` in `pyproject.toml`) and containers are built with the `make_container`/`make_client` fixtures.
 

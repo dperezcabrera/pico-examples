@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
 
+# Every install resolves against the pico-bom release train, so what the
+# examples exercise is exactly the set validated together.
+env:
+  PIP_CONSTRAINT: https://raw.githubusercontent.com/dperezcabrera/pico-bom/main/2026.09.txt
+
 jobs:
   test:
     runs-on: ubuntu-latest

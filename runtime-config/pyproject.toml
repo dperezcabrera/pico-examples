@@ -8,9 +8,9 @@ version = "0.1.0"
 description = "Hot config reload through POST /actuator/refresh without restarting"
 requires-python = ">=3.11"
 dependencies = [
-    "pico-fastapi>=0.3.1",
-    "pico-actuator>=0.2.0",
-    "pico-resilience>=0.2.0",
+    "pico-fastapi>=0.4.0",
+    "pico-actuator>=0.2.1",
+    "pico-resilience>=0.2.1",
 ]
 
 [project.optional-dependencies]

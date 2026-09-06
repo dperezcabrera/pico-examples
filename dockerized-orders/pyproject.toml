@@ -8,12 +8,12 @@ version = "0.1.0"
 description = "Deployable order service: Docker Compose with Postgres and Redis, Kubernetes manifests"
 requires-python = ">=3.11"
 dependencies = [
-    "pico-fastapi>=0.3.1",
+    "pico-fastapi>=0.4.0",
     "pico-sqlalchemy>=0.5.1",
-    "pico-caching>=0.1.0",
+    "pico-caching>=0.1.1",
     "pico-data-redis>=0.1.0",
-    "pico-actuator>=0.2.0",
-    "pico-ioc[yaml]>=2.3.3",
+    "pico-actuator>=0.2.1",
+    "pico-ioc[yaml]>=2.5.1",
     "uvicorn>=0.30",
     "aiosqlite>=0.20",
     "asyncpg>=0.29",
