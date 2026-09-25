@@ -19,7 +19,7 @@ Non-trivial, runnable examples for the [pico ecosystem](https://github.com/dpere
 
 ```bash
 cd order-service
-pip install -c https://raw.githubusercontent.com/dperezcabrera/pico-bom/main/2026.10.txt -e ".[dev]"
+pip install -c https://raw.githubusercontent.com/dperezcabrera/pico-bom/main/2026.11.txt -e ".[dev]"
 pytest
 ```
 
