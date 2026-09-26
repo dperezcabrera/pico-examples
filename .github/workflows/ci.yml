@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Weekly run against whatever upstream publishes now: a new SQLAlchemy or
+  # Starlette release must turn this red without anyone pushing.
+  schedule:
+    - cron: "20 5 * * 1"
+  workflow_dispatch:
 
 # Every install resolves against the pico-bom release train, so what the
 # examples exercise is exactly the set validated together.
