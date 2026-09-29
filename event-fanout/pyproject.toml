@@ -8,8 +8,8 @@ version = "0.1.0"
 description = "Order events fanned out by RabbitMQ topic routing to independent consumers"
 requires-python = ">=3.11"
 dependencies = [
-    "pico-boot>=0.2.0",
-    "pico-rabbitmq>=0.1.1",
+    "pico-boot>=0.2.1",
+    "pico-rabbitmq>=0.1.2",
 ]
 
 [project.optional-dependencies]

@@ -8,8 +8,8 @@ version = "0.1.0"
 description = "REST CRUD over SQLAlchemy with transactional integrity"
 requires-python = ">=3.11"
 dependencies = [
-    "pico-fastapi>=0.4.1",
-    "pico-sqlalchemy>=0.5.2",
+    "pico-fastapi>=0.4.2",
+    "pico-sqlalchemy>=0.5.3",
     "aiosqlite>=0.20",
 ]
 
